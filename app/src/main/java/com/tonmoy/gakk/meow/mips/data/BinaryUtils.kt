@@ -1,11 +1,20 @@
 package com.tonmoy.gakk.meow.mips.data
 
-import android.text.TextUtils
+import java.lang.NullPointerException
+import java.lang.NumberFormatException
+import java.util.*
 
 
 infix fun String.add(binary:String): String {
     return GFG.addBinary(this,binary)
 }
+infix fun String.sub(binary: String): String {
+    val bin2 = binary.twosComplement(this.length)
+    return (this add bin2).binaryFormat(this.length)
+}
+
+
+
 fun String.twosComplement(len: Int): String = GFG.printTwosComplement(this).binaryFormat(len)
 fun String.binaryFormat(len:Int): String {
      val str = String.format("%" + len + "s", this)
@@ -33,7 +42,34 @@ fun String.leftShift(bit:Int): String {
 fun String.rightShift(bit:Int): String {
     return this.binaryToLong().shr(bit).toBinary(this.length).binaryFormat(this.length)
 }
-fun String.isFirstBitOne(): Boolean = this.last() == '1'
+fun String.leftHalf(): String {
+   val bit =  (this.length/2)
+  return this.addBinarySpace(bit).split(" ").first()
+}
+fun String.replaceLeftHalf(binary: String): String {
+    return "${binary}${this.rightHalf()}"
+}
+fun String.replaceRightHalf(binary: String): String {
+    return "${this.leftHalf()}${binary}"
+}
+fun String.rightHalf(): String {
+    val bit =  (this.length/2)
+    return this.addBinarySpace(bit).split(" ").last()
+}
+fun String.isOneLSB(): Boolean = this.last() == '1'
+fun String.isOneMSB(): Boolean = this.first() == '1'
+fun String.replaceMSB(char: Char):String{
+    val list = this.toMutableList().apply {
+        this[0] = char
+    }
+   return String(list.toCharArray())
+}
+fun String.replaceLSB(char: Char): String {
+    val list =  this.toMutableList().apply {
+        this[this@replaceLSB.lastIndex] = char
+    }
+    return String(list.toCharArray())
+}
 /*fun String.addBinarySpace(bit:Int): String {
     val list = this.toCharArray().toMutableList()
     val newList:MutableList<Char > = ArrayList()

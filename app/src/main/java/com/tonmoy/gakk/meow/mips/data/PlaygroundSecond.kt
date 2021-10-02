@@ -41,7 +41,7 @@ class RefinedVersionOfMultiplication(private val multiplier:Long, private val mu
 
     }
     fun step(){
-        if(bProduct.isFirstBitOne()){
+        if(bProduct.isOneLSB()){
 
             bProduct2 = (bProduct2 add bMultiplicand).binaryFormat(bit)
             bProduct = sumProduct
@@ -96,7 +96,7 @@ class FirstVersionOfMultiplication(private val multiplier:Long, private val mult
 
     }
     fun step(){
-        if(bMultiplier.isFirstBitOne()){
+        if(bMultiplier.isOneLSB()){
             bProduct = bProduct add bMultiplicand
             printStep("1 -> Product = Product + Multiplicand")
         }else{
