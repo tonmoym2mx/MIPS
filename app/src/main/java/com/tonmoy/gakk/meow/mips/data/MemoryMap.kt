@@ -4,13 +4,13 @@ import kotlin.math.log2
 
 fun main(){
     //directMappedCaseBookExample()
-  // directMappedCaseAssignmentExample()
+   //directMappedCaseAssignmentExample()
 
     //fullyAssociativeCaseBookExample()
 
-   // fullyAssociativeCaseAssignmentExample();
+    fullyAssociativeCaseAssignmentExample();
 
-    twoWaySetAssociativeCaseAssignmentExample()
+    //twoWaySetAssociativeCaseAssignmentExample()
 }
 fun directMappedCaseBookExample(){
     val dmc = DirectMappedCase(caseBlockSize = 4, mainMemoryAddressBitSize = 4 )
@@ -23,13 +23,13 @@ fun directMappedCaseBookExample(){
 }
 fun directMappedCaseAssignmentExample(){
 
-    val dmc = DirectMappedCase(caseBlockSize = 8, mainMemoryAddressBitSize = 4 )
+    val dmc = DirectMappedCase(caseBlockSize = 16, mainMemoryAddressBitSize = 5 )
     dmc.accessAndPrint(2)
     dmc.accessAndPrint(7)
     dmc.accessAndPrint(2)
     dmc.accessAndPrint(6)
     dmc.accessAndPrint(7)
-    dmc.accessAndPrint(15)
+
 }
 
 fun fullyAssociativeCaseBookExample(){
@@ -42,24 +42,24 @@ fun fullyAssociativeCaseBookExample(){
     fac.accessAndPrint(15)
 }
 fun fullyAssociativeCaseAssignmentExample(){
-    val fac =  FullyAssociativeCase(4,4)
-    fac.accessAndPrint(0)
-    fac.accessAndPrint(8)
-    fac.accessAndPrint(0)
+    val fac =  FullyAssociativeCase(16,5)
+    fac.accessAndPrint(2)
+    fac.accessAndPrint(7)
+    fac.accessAndPrint(2)
     fac.accessAndPrint(6)
-    fac.accessAndPrint(8)
+    fac.accessAndPrint(7)
 }
 fun twoWaySetAssociativeCaseAssignmentExample(){
     val twsa =  TwoWaySetAssociativeCase(
-        setSize = 2,
-        caseBlockSize = 4,
+        setSize = 8,
+        caseBlockSize = 16,
         mainMemoryAddressBitSize = 4
     )
-    twsa.accessAndPrint(0)
-    twsa.accessAndPrint(8)
-    twsa.accessAndPrint(0)
+    twsa.accessAndPrint(2)
+    twsa.accessAndPrint(7)
+    twsa.accessAndPrint(2)
     twsa.accessAndPrint(6)
-    twsa.accessAndPrint(8)
+    twsa.accessAndPrint(7)
 }
 
 class TwoWaySetAssociativeCase(private val setSize:Int,private val caseBlockSize:Int, private val mainMemoryAddressBitSize:Int){
@@ -75,7 +75,7 @@ class TwoWaySetAssociativeCase(private val setSize:Int,private val caseBlockSize
     }
     fun accessAndPrint(address: Long){
         val data = access(address)
-        println("Address: ${address.toBinary(mainMemoryAddressBitSize)} ($address)  SET NO ${data?.setIndex} ${if(data?.isHit == true)"Hit" else "miss"} ${sets[data?.setIndex!!].memory.map { it.toString() }.toString()}")
+        println("Address: ${address.toBinary(mainMemoryAddressBitSize)} ($address)  SET: ${data?.setIndex} ${if(data?.isHit == true)"Hit" else "miss"} ${sets[data?.setIndex!!].memory.map { it.toString() }.toString()}")
     }
 
 
