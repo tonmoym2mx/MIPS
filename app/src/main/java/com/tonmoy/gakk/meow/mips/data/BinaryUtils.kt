@@ -56,6 +56,11 @@ fun String.rightHalf(): String {
     val bit =  (this.length/2)
     return this.addBinarySpace(bit).split(" ").last()
 }
+fun String.rightHalf(size:Int): String {
+    return this.addBinarySpace(size).split(" ").last()
+}fun String.leftHalf(size:Int): String {
+    return this.addBinarySpace(size).split(" ").first()
+}
 fun String.isOneLSB(): Boolean = this.last() == '1'
 fun String.isOneMSB(): Boolean = this.first() == '1'
 fun String.replaceMSB(char: Char):String{
@@ -97,6 +102,17 @@ fun String.addBinarySpace(step:Int): String {
     }
    return newString.reversed()
 }
+fun String?.fx() = this ?: ""
+
+inline fun<T> exH(func:()->T):T?{
+    return try {
+        func.invoke()
+    }catch (e:java.lang.Exception){
+
+        null
+    }
+}
+
 
 
 

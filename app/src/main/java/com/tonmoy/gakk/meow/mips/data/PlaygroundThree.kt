@@ -2,8 +2,15 @@ package com.tonmoy.gakk.meow.mips.data
 
 
 fun main(){
-    val fvd= FinalVersionOfDivision(13,3,4)
-    fvd.calculate()
+   // val fvd= FinalVersionOfDivision(7,2,4)
+   // fvd.calculate()
+
+   // subBinary(3,2,4)
+    if(-10<0){
+        println("Incorrect value of a and b");
+    }else{
+        println("Correct value of a and b");
+    }
 
 
 }
